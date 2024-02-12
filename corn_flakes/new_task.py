@@ -29,5 +29,18 @@ def remove_duplicate(mylist):
     # return my_list2
 
 
-def duplicate_number(param):
-    return [param, param]
+# def duplicate_number(param):
+#     return [param, param]
+
+my_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+
+
+def add_third_element(my_list):
+    sum_total = 0
+
+    for number in range(1, len(my_list), 3):
+        sum_total += number
+    return sum_total
+
+
+print(add_third_element(my_list))

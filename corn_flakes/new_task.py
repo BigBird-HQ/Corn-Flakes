@@ -24,23 +24,37 @@ def double_list(my_list):
 def remove_duplicate(mylist):
     return list(set(mylist))
 
-    # for index in range(0, len(mylist), 2):
-    #     my_list2.append(mylist[index])
-    # return my_list2
+
+#   my_list2 = []
+#   for index in range(0, len(mylist), 2):
+#   my_list2.append(mylist[index])
+#   return my_list2
 
 
 # def duplicate_number(param):
-#     return [param, param]
-
-my_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+#   return [param, param]
 
 
-def add_third_element(my_list):
+my_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+
+def add_third_elements(my_list):
     sum_total = 0
 
-    for number in range(1, len(my_list), 3):
+    for number in range(0, len(my_list), 3):
         sum_total += number
     return sum_total
 
 
-print(add_third_element(my_list))
+def sum_first_middle_last_elements(my_list):
+    sum_total = 0
+    length = len(my_list)
+    sum_total += my_list[0]
+    sum_total += my_list[length - 1]
+    if length % 2 == 0:
+        sum_total += (my_list[length // 2 - 1] + my_list[length // 2]) // 2
+    else:
+        sum_total += my_list[length // 2]
+
+    return sum_total
+

@@ -16,8 +16,8 @@ def sum_collection(my_set):
 
     return sum_total
 
-
-def remove_item(my_set, number):
-
-    for element in my_set:
-        if
+#
+# def remove_item(my_set, number):
+#
+#     for element in my_set:
+#         if element in my_set

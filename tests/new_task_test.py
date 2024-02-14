@@ -35,11 +35,6 @@ class NewTaskTest(unittest.TestCase):
         self.assertEqual(18, add_third_elements(my_list))
 
 
-    
-
-
-
-
 
 
 if __name__ == '__main__':

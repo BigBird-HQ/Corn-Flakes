@@ -1,5 +1,6 @@
 import unittest
 
+from Account.InvalidAmountError import InvalidAmountError
 from Account.account import Account
 
 
@@ -26,6 +27,13 @@ class MyTestCase(unittest.TestCase):
         account.deposit(3000)
         self.assertEqual(5000, account.check_balance('1234'))
 
+    def test_that_negative_amount_cannot_be_withdrawn_throw_invalid_amount_exception(self):
+        account = Account('mavericks', 0, '1234', 1)
+        self.assertEqual(0, account.check_balance('1234'))
+        with self.assertRaises(InvalidAmountError):
+            account.deposit(-2000)
+        self.assertEqual(0, account.check_balance('1234'))
+
     def test_that_balance_decreases_when_positive_amount_is_withdrawn(self):
         account = Account('mavericks', 0, '1234', 1)
         account.deposit(5000)
@@ -36,6 +44,9 @@ class MyTestCase(unittest.TestCase):
         account = Account('mavericks', 0, '1234', 1)
         account.withdraw(0)
         self.assertEqual(0, account.check_balance('1234'))
+
+
+
 
 
 

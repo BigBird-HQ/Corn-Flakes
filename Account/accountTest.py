@@ -12,6 +12,10 @@ class MyTestCase(unittest.TestCase):
 
         self.assertEqual(0, account.check_balance('1234'))
 
+    def test_that_account_balance_can_be_checked(self):
+        account = Account('mavericks', 0, '1234', 1)
+        self.assertEqual(0, account.check_balance('1234'))
+
     def test_that_balance_remains_unchanged_when_zero_amount_is_deposited(self):
         account = Account('mavericks', 0, '1234', 1)
         account.deposit(0)

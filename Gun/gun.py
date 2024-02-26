@@ -25,4 +25,3 @@ class Gun:
             self.number_of_bullets -= 1
         else:
             self.number_of_bullets = self.number_of_bullets
-

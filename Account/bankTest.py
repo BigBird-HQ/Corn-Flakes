@@ -10,6 +10,12 @@ class MyTestCase(unittest.TestCase):
         bank.register_customer('first_name', 'last_name', 'pin')
         self.assertEqual(1, bank.get_account())
 
+    def test_that_two_customers_can_be_registered(self):
+        bank = Bank('mavericks')
+        bank.register_customer('first_name', 'last_name', 'pin')
+        bank.register_customer('first_name', 'last_name', 'pin')
+        self.assertEqual(2, bank.get_account())
+
     def test_that_account_can_be_found(self):
         bank = Bank('mavericks')
         found_account = bank.register_customer('first_name', 'last_name', 'pin')
@@ -17,7 +23,13 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(found_account, bank.find_account(2))
         self.assertEqual('first_name last_name', found_account.get_name())
 
-    def test_that_deposit_can_be_made(self):
+    def test_that_positive_amount_can_be_deposited(self):
+        bank = Bank('mavericks')
+        account = bank.register_customer('first_name', 'last_name', 'pin')
+        bank.deposit(account.get_number(), 2000)
+        self.assertEqual(2000, account.get_balance())
+
+    def test_that_negative_amount_cannot_be_deposited(self):
         bank = Bank('mavericks')
         account = bank.register_customer('first_name', 'last_name', 'pin')
         bank.deposit(account.get_number(), 2000)

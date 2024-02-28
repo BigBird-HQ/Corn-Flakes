@@ -5,9 +5,9 @@ from Account.InvalidPinError import InvalidPinError
 
 class Account:
 
-    def __init__(self, name, balance, pin, number):
+    def __init__(self, name, pin, number):
         self.name = name
-        self.balance = balance
+        self.balance = 0
         self.pin = pin
         self.number = number
 
@@ -36,3 +36,12 @@ class Account:
     def insufficient_funds(self, amount):
         if amount > self.balance:
             raise InsufficientFundsError('Insufficient Funds')
+
+    def get_name(self):
+        return self.name
+
+    def get_number(self):
+        return self.number
+
+    def get_balance(self):
+        return self.balance

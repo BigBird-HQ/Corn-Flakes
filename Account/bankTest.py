@@ -1,6 +1,7 @@
 import unittest
 
 from Account.InsufficientFundsError import InsufficientFundsError
+from Account.InvalidAmountError import InvalidAmountError
 from Account.bank import Bank
 
 
@@ -20,7 +21,7 @@ class MyTestCase(unittest.TestCase):
         bank = Bank('mavericks')
         found_account = bank.register_customer('first_name', 'last_name', 'pin')
         self.assertEqual(1, bank.get_account())
-        self.assertEqual(found_account, bank.find_account(2))
+        self.assertEqual(found_account, bank.find_account(1))
         self.assertEqual('first_name last_name', found_account.get_name())
 
     def test_that_positive_amount_can_be_deposited(self):
@@ -29,18 +30,41 @@ class MyTestCase(unittest.TestCase):
         bank.deposit(account.get_number(), 2000)
         self.assertEqual(2000, account.get_balance())
 
-    def test_that_negative_amount_cannot_be_deposited(self):
+    def test_that_negative_amount_cannot_be_deposited_raise_exception(self):
+        bank = Bank('mavericks')
+        account = bank.register_customer('first_name', 'last_name', 'pin')
+        with self.assertRaises(InvalidAmountError):
+            bank.deposit(account.get_number(), -2000)
+        self.assertEqual(0, account.get_balance())
+
+    def test_that_zero_amount_cannot_be_deposited_raise_exception(self):
+        bank = Bank('mavericks')
+        account = bank.register_customer('first_name', 'last_name', 'pin')
+        with self.assertRaises(InvalidAmountError):
+            bank.deposit(account.get_number(), 0)
+        self.assertEqual(0, account.get_balance())
+
+    def test_that_positive_amount_can_be_withdrawn(self):
         bank = Bank('mavericks')
         account = bank.register_customer('first_name', 'last_name', 'pin')
         bank.deposit(account.get_number(), 2000)
-        self.assertEqual(2000, account.get_balance())
+        bank.withdraw(account.get_number(), 1000, 'pin')
+        self.assertEqual(1000, account.get_balance())
 
-    def test_that_amount_can_be_withdrawn(self):
+    def test_that_amount_bigger_than_account_balance_cannot_be_withdrawn_raise_exception(self):
         bank = Bank('mavericks')
         account = bank.register_customer('first_name', 'last_name', 'pin')
         bank.deposit(account.get_number(), 2000)
         with self.assertRaises(InsufficientFundsError):
             bank.withdraw(account.get_number(), 3000, 'pin')
+        self.assertEqual(2000, account.get_balance())
+
+    def test_that_negative_amount_cannot_be_withdrawn_raise_exception(self):
+        bank = Bank('mavericks')
+        account = bank.register_customer('first_name', 'last_name', 'pin')
+        bank.deposit(account.get_number(), 2000)
+        with self.assertRaises(InvalidAmountError):
+            bank.withdraw(account.get_number(), -2000, 'pin')
         self.assertEqual(2000, account.get_balance())
 
     def test_that_balance_can_be_checked(self):

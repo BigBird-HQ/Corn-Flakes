@@ -15,23 +15,24 @@ class Account:
         return self.balance
 
     def deposit(self, amount):
-        if amount < 0:
+        if amount <= 0:
             raise InvalidAmountError('Invalid Amount')
         self.balance += amount
 
     def withdraw(self, amount, pin):
         self.insufficient_funds(amount)
-        self.invalid_amount(amount)
+        self.invalid(amount)
         self.validate(pin)
         self.balance -= amount
 
     def validate(self, pin):
-        if not pin == self.pin:
+        if not self.pin == pin:
             raise InvalidPinError('Invalid Pin')
 
-    def invalid_amount(self, amount):
-        if amount == 0:
+    def invalid(self, amount):
+        if amount <= 0:
             raise InvalidAmountError('Invalid Amount')
+        return True
 
     def insufficient_funds(self, amount):
         if amount > self.balance:

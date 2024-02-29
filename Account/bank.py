@@ -13,11 +13,9 @@ class Bank:
         account_number = self.generate_account_number()
         new_account = Account(first_name + " " + last_name, pin, account_number)
         self.account.append(new_account)
-        self.counter += 1
         return new_account
 
     def generate_account_number(self):
-        self.counter += 1
         return self.counter
 
     def get_account(self):

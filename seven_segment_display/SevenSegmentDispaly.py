@@ -10,20 +10,21 @@ def seven_segment_display(value):
 
 def horizontal_display(num):
     if num == '1':
-        print('**********')
+        print('* * * * * *')
 
 
-def vertical_display(num1, num2):
-    if num1 == '1' and num1 == '1':
-        for num in range(4):
-            print('*        *')
-    elif num1 == '0' and num2 == '1':
-        for num in range(4):
-            print('           *')
-    elif num1 == '1' and num2 == '0':
-        for num in range(4):
-            print('*           ')
+def vertical_display(left, right):
+    if left == '1' and right == '1':
+        for number in range(4):
+            print('*         *')
+    elif left == '0' and right == '1':
+        for number in range(4):
+            print('          *')
+    elif left == '1' and right == '0':
+        for number in range(4):
+            print('*          ')
 
 
-num1 = '1111111'
-seven_segment_display(num1)
+if __name__ == "__main__":
+    num = input('Enter binary: ')
+    seven_segment_display(num)

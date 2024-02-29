@@ -1,4 +1,3 @@
-from Account import account
 from Account.InvalidPinError import InvalidPinError
 from Account.account import Account
 
@@ -7,7 +6,7 @@ class Bank:
     def __init__(self, name):
         self.name = name
         self.account = []
-        self.counter = 1
+        self.account_number = 1
 
     def register_customer(self, first_name, last_name, pin):
         account_number = self.generate_account_number()
@@ -16,7 +15,7 @@ class Bank:
         return new_account
 
     def generate_account_number(self):
-        return self.counter
+        return self.account_number
 
     def get_account(self):
         return len(self.account)
@@ -44,4 +43,3 @@ class Bank:
             self.account.remove(account)
         else:
             raise InvalidPinError('Incorrect pin')
-

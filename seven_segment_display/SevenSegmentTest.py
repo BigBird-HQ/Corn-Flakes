@@ -22,6 +22,14 @@ class MyTestCase(unittest.TestCase):
         with self.assertRaises(InvalidInputException):
             segment.invalid_input(numbers)
 
+    def test_that_segment_can_no_less_than_eight_binary_numbers(self):
+        segment = SevenSegmentDisplay()
+        numbers = '11111'
+        with self.assertRaises(InvalidInputException):
+            segment.invalid_input(numbers)
+
+
+
 
 if __name__ == '__main__':
     unittest.main()

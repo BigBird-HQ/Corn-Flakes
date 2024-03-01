@@ -43,3 +43,4 @@ class Bank:
             self.account.remove(account)
         else:
             raise InvalidPinError('Incorrect pin')
+

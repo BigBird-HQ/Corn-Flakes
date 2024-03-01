@@ -44,3 +44,8 @@ class Bank:
         else:
             raise InvalidPinError('Incorrect pin')
 
+    def transfer(self, number, number1, amount, pin):
+        sender = self.find_account(number)
+        recipient = self.find_account(number1)
+
+

@@ -14,7 +14,7 @@ class MyTestCase(unittest.TestCase):
     def test_that_two_customers_can_be_registered(self):
         bank = Bank('mavericks')
         bank.register_customer('first_name', 'last_name', 'pin')
-        bank.register_customer('first_name', 'last_name', 'pin')
+        bank.register_customer('first_name1', 'last_name1', 'pin')
         self.assertEqual(2, bank.get_account())
 
     def test_that_account_can_be_found(self):
@@ -79,6 +79,15 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(1, bank.get_account())
         bank.remove_account(account.get_number(), 'pin')
         self.assertEqual(0, bank.get_account())
+
+    # def test_transfers_between_two_accounts_in_the_same_bank(self):
+    #     bank = Bank('mavericks')
+    #     account = bank.register_customer('first_name', 'last_name', 'pin')
+    #     account1 = bank.register_customer('first_name1', 'last_name', 'pin')
+    #     bank.deposit(account.get_number(), 5000)
+    #     bank.transfer(account.get_number(), account1.get_number(), 2000, 'pin')
+    #     self.assertEquals(3000, account.get_balance())
+    #     self.assertEquals(2000, account1.get_balance())
 
 
 if __name__ == '__main__':

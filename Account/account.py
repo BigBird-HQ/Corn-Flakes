@@ -38,8 +38,8 @@ class Account:
         if amount > self.balance:
             raise InsufficientFundsError('Insufficient Funds')
 
-    def get_name(self):
-        return self.name
+    # def get_name(self):
+    #     return self.name
 
     def get_number(self):
         return self.number

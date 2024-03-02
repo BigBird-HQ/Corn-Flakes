@@ -6,7 +6,7 @@ class Bank:
     def __init__(self, name):
         self.name = name
         self.account = []
-        self.account_number = 1
+        self.account_number = 0
 
     def register_customer(self, first_name, last_name, pin):
         account_number = self.generate_account_number()
@@ -15,6 +15,7 @@ class Bank:
         return new_account
 
     def generate_account_number(self):
+        self.account_number += 1
         return self.account_number
 
     def get_account(self):
@@ -47,5 +48,5 @@ class Bank:
     def transfer(self, number, number1, amount, pin):
         sender = self.find_account(number)
         recipient = self.find_account(number1)
-
-
+        sender.withdraw(amount, pin)
+        recipient.deposit(amount)

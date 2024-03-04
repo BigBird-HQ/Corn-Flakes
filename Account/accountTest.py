@@ -9,7 +9,6 @@ from Account.account import Account
 class MyTestCase(unittest.TestCase):
     def test_that_account_is_empty_at_creation(self):
         account = Account('mavericks', '1234', 1)
-
         self.assertEqual(0, account.check_balance('1234'))
 
     def test_that_account_balance_can_be_checked(self):

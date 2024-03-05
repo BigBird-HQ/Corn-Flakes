@@ -20,7 +20,6 @@ class SevenSegmentDisplay:
         if numbers == '1':
             print('* * * * * *')
 
-
     def vertical_display(self, left, right):
         if left == '1' and right == '1':
             for element in range(4):

@@ -23,31 +23,26 @@ class Diary:
             raise IncorrectPasswordError('Incorrect Password')
 
     def create_entry(self, title, body):
-        id_number = self.generate_id(self)
-        entry = Entry(id_number, title, body)
+        entry = Entry(self.id_number, title, body)
+        self.id_number += 1
         self.entries.append(entry)
-
-    @staticmethod
-    def generate_id(self):
-        return self.id_number
 
     def get_number_of_entry(self):
         return len(self.entries)
 
-    def find_entry_by_id(self, id_number):
+    def find_entry_by_id(self, id_number) -> Entry:
         for entry in self.entries:
             if entry.get_id() == id_number:
                 return entry
 
+    def delete_entry(self, id_number):
+        entry = self.find_entry_by_id(id_number)
+        self.entries.remove(entry)
 
+    def update_entry(self, id_number, title, body):
+        updated_entry = self.find_entry_by_id(id_number)
+        updated_entry.set_body(body)
+        updated_entry.set_title(title)
 
-
-
-
-
-
-
-
-
-
-
+    def get_username(self):
+        return self.username

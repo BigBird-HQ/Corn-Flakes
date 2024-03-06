@@ -19,8 +19,15 @@ class MyTestCase(unittest.TestCase):
     def test_that_diary_found_by_username(self):
         self.diaries.add('username', 'password')
         self.diaries.add('username1', 'password')
-        expected = self.diaries.find_by_username('username')
-        self.assertEqual(expected, self.diaries.get_diaries())
+        expected = self.diaries.find_by_username('username1')
+        self.assertEqual(expected.get_username(), 'username1')
+
+    def test_that_diary_in_diaries_can_be_deleted(self):
+        self.diaries.add('username', 'password')
+        self.diaries.add('username1', 'password')
+        self.diaries.find_by_username('username1')
+        self.diaries.delete('username', 'password')
+        self.assertEqual(1, self.diaries.get_number_of_diaries())
 
 
 if __name__ == '__main__':

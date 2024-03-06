@@ -18,5 +18,9 @@ class Diaries:
             if diary.get_username() == username:
                 return diary
 
-    def get_diaries(self):
-        return self.diaries
+    # def get_diaries(self):
+    #     return self.diaries
+
+    def delete(self, username, password):
+        found = self.find_by_username(username)
+        self.diaries.remove(found)

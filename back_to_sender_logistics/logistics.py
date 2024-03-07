@@ -10,4 +10,3 @@ def calculate_daily_pay(successful_delivery_rate):
         return successful_delivery_rate * 250 + 5000
     elif successful_delivery_rate >= 70:
         return successful_delivery_rate * 500 + 5000
-

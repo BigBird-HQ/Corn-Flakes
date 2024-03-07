@@ -11,7 +11,7 @@ class BankApp:
         print('1. Open Account\n2. Check Balance\n3. Deposit\n4. Withdraw\n5. Transfer\n6. Close Account\n7. Exit')
         print('+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+')
 
-        option = input('Select option: ')
+        option = input('What would you like to do?: ')
 
         if option == '1':
             self.create_account()
@@ -36,13 +36,24 @@ class BankApp:
         last_name = input('Enter last name: ')
         pin = input('Enter a pin of your choice: ')
         account = self.bank.register_customer(first_name, last_name, pin)
-        print('Account registered successfully')
-        print('Your account number is: ', account.get_number())
+        print('Account opened successfully')
+        print('Your account new account number is: ', account.get_number())
         self.display()
+
+    def check_balance(self):
+        account_number = input('Enter account number:')
+        pin = input('Enter pin: ')
+        try:
+            balance = self.bank.check_balance(int(account_number), pin)
+            print('Your account balance is: ' '#', balance)
+        except BaseException as e:
+            print(e)
+        finally:
+            self.display()
 
     def deposit(self):
         account_number = input('Enter account number: ')
-        amount = input('enter amount: ')
+        amount = input('Enter amount: ')
         try:
             self.bank.deposit(int(account_number), int(amount))
             print('Amount deposited successfully')
@@ -51,37 +62,26 @@ class BankApp:
         finally:
             self.display()
 
-    def transfer(self):
-        sender_account = input('Enter amount: ')
-        recipient_account = input('Enter account number: ')
-        amount = input('Enter account number: ')
-        pin = input('Enter pin: ')
-        try:
-            self.bank.transfer(int(sender_account), int(recipient_account), int(amount), pin)
-            print('Amount transferred successfully')
-        except BaseException as e:
-            print(e)
-        finally:
-            self.display()
-
     def withdraw(self):
-        account = input('Enter account number: ')
+        account_number = input('Enter account number: ')
         amount = input('Enter amount: ')
-        pin = input('Enter pin: ')
+        pin = input('Enter PIN: ')
         try:
-            self.bank.withdraw(int(account), int(amount), pin)
+            self.bank.withdraw(int(account_number), int(amount), pin)
             print('Amount withdrawn successfully')
         except BaseException as e:
             print(e)
         finally:
             self.display()
 
-    def check_balance(self):
-        account_number = input('Enter account number')
-        pin = input('Enter pin: ')
+    def transfer(self):
+        sender_account = input("Enter sender's account number: ")
+        recipient_account = input("Enter recipient's account number: ")
+        amount = input('Enter amount: ')
+        pin = input('Enter PIN: ')
         try:
-            balance = self.bank.check_balance(int(account_number), pin)
-            print('Your account balance is: ' '#', balance)
+            self.bank.transfer(int(sender_account), int(recipient_account), int(amount), pin)
+            print('Amount transferred successfully')
         except BaseException as e:
             print(e)
         finally:

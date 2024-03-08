@@ -49,5 +49,4 @@ class Bank:
         sender = self.find_account(number)
         recipient = self.find_account(number1)
         sender.withdraw(amount, pin)
-        # sender.withdraw(amount, pin)
         recipient.deposit(amount)

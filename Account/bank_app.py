@@ -6,12 +6,13 @@ class BankApp:
         self.bank = Bank("Mavericks")
 
     def display(self):
-        print('+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+')
         print('Welcome To Mavericks Bank App')
+        print('What would you like to do?')
+        print('+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+')
         print('1. Open Account\n2. Check Balance\n3. Deposit\n4. Withdraw\n5. Transfer\n6. Close Account\n7. Exit')
         print('+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+')
 
-        option = input('What would you like to do?: ')
+        option = input('Select option: ')
 
         if option == '1':
             self.create_account()
@@ -28,7 +29,7 @@ class BankApp:
         elif option == '7':
             self.exit()
         else:
-            print('Enter a correct choice')
+            print('Enter a correct option from 1 to 7')
             self.display()
 
     def create_account(self):

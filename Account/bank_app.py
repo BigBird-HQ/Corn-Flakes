@@ -1,3 +1,6 @@
+from Account.InsufficientFundsError import InsufficientFundsError
+from Account.InvalidAmountError import InvalidAmountError
+from Account.InvalidPinError import InvalidPinError
 from Account.bank import Bank
 
 
@@ -58,7 +61,7 @@ class BankApp:
         try:
             self.bank.deposit(int(account_number), int(amount))
             print('Amount deposited successfully')
-        except BaseException as e:
+        except InvalidAmountError as e:
             print(e)
         finally:
             self.display()
@@ -70,7 +73,9 @@ class BankApp:
         try:
             self.bank.withdraw(int(account_number), int(amount), pin)
             print('Amount withdrawn successfully')
-        except BaseException as e:
+        except InsufficientFundsError as e:
+            print(e)
+        except InvalidPinError as e:
             print(e)
         finally:
             self.display()
@@ -83,7 +88,11 @@ class BankApp:
         try:
             self.bank.transfer(int(sender_account), int(recipient_account), int(amount), pin)
             print('Amount transferred successfully')
-        except BaseException as e:
+        except InsufficientFundsError as e:
+            print(e)
+        except InvalidAmountError as e:
+            print(e)
+        except InvalidPinError as e:
             print(e)
         finally:
             self.display()

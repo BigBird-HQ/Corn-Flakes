@@ -43,6 +43,3 @@ class Account:
 
     def get_number(self):
         return self.number
-
-    # def get_balance(self, amount):
-    #     return self.balance

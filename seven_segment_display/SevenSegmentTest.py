@@ -29,7 +29,5 @@ class MyTestCase(unittest.TestCase):
             segment.invalid_input(numbers)
 
 
-
-
 if __name__ == '__main__':
     unittest.main()

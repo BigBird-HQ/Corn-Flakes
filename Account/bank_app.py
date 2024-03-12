@@ -38,19 +38,19 @@ class BankApp:
     def create_account(self):
         first_name = input('Enter first name: ')
         last_name = input('Enter last name: ')
-        pin = input('Enter a pin of your choice: ')
+        pin = input('Enter new PIN: ')
         account = self.bank.register_customer(first_name, last_name, pin)
-        print('Account opened successfully')
-        print('Your account new account number is: ', account.get_number())
+        print("\nCongratulations! You're now a Maverick")
+        print('Your new account number is: ', account.get_number(), '\n\n')
         self.display()
 
     def check_balance(self):
         account_number = input('Enter account number:')
-        pin = input('Enter pin: ')
+        pin = input('Enter PIN: ')
         try:
             balance = self.bank.check_balance(int(account_number), pin)
             print('Your account balance is: ' '#', balance)
-        except BaseException as e:
+        except InvalidPinError as e:
             print(e)
         finally:
             self.display()
@@ -103,7 +103,7 @@ class BankApp:
         try:
             self.bank.remove_account(account_number, pin)
             print('Account closed successfully')
-        except BaseException as e:
+        except InvalidPinError as e:
             print(e)
         finally:
             self.display()
